@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "typecheck": "tsc -b --pretty",
     "test": "node --experimental-strip-types --test src/task-state.test.ts src/window-geometry.test.ts src/report-format.test.ts",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "acoes": "node scripts/atualizar-acoes.mjs"
   },
   "dependencies": {
     "@tauri-apps/api": "2.12.3",

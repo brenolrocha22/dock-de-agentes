@@ -40,6 +40,7 @@ import { listReports, openReport, openReportsFolder, saveReport, type ReportFile
 import { loadSettings, saveSettings, type DockSettings } from "./settings";
 import { initialTaskState, taskReducer } from "./task-state";
 import type { DockLayout } from "./window-geometry";
+import stocks from "../data/acoes.json";
 
 type AgentId = "acoes" | "fiis" | "radar" | "carteira";
 type RunState = "idle" | "running" | "completed";
@@ -541,6 +542,8 @@ function AgentPanel({
         </div>
       )}
 
+      {agent.id === "radar" && <RadarWatchlist />}
+
       {isDesktop && <RecentReports agentId={agent.id} version={reportsVersion} highlight={savedReport} />}
 
       <form className="task-form mt-4" onSubmit={onSubmit}>
@@ -572,6 +575,29 @@ function AgentPanel({
         Simulação local · não é recomendação de investimento
       </p>
     </motion.section>
+  );
+}
+
+function RadarWatchlist() {
+  const watched = stocks.acoes.filter((stock) => stocks.radar.includes(stock.ticker));
+  const updatedAt = new Date(stocks.atualizadoEm).toLocaleDateString("pt-BR");
+
+  return (
+    <div className="mt-4">
+      <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.12em] text-white/35">No radar · retorno em 2 anos</p>
+      <ul className="grid gap-1">
+        {watched.map((stock) => (
+          <li key={stock.ticker} className="report-item cursor-default" title={stock.nome}>
+            <span className="w-14 font-semibold text-white/85">{stock.ticker}</span>
+            <span className="flex-1 truncate text-white/40">{stock.nome}</span>
+            <span className="text-[#83d8b8]">+{stock.retorno2a.toFixed(2)}%</span>
+          </li>
+        ))}
+      </ul>
+      <p className="mt-2 text-[10px] leading-4 text-white/30">
+        Fonte: {stocks.fonte}, {updatedAt}. {stocks.criterio}. Exemplo; rentabilidade passada não garante resultado futuro.
+      </p>
+    </div>
   );
 }
 

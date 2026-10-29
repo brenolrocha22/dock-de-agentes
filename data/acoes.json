@@ -1,0 +1,78 @@
+{
+  "fonte": "brapi.dev",
+  "atualizadoEm": "2026-10-29T01:03:10.194Z",
+  "criterio": "Retorno total positivo em 2 anos (fechamento ajustado mensal)",
+  "aviso": "Exemplo para estudo. Rentabilidade passada não garante resultado futuro; não é recomendação de investimento.",
+  "radar": [
+    "PETR4",
+    "ITUB4",
+    "VALE3"
+  ],
+  "acoes": [
+    {
+      "ticker": "PETR4",
+      "nome": "Petroleo Brasileiro SA Pfd",
+      "preco": 52.51,
+      "precoEm": "2026-10-28T21:30:30.000Z",
+      "pl": 5.074263405583525,
+      "retorno2a": 82.98,
+      "inicio": {
+        "data": "2024-10-29",
+        "fechamentoAjustado": 28.6979
+      },
+      "fim": {
+        "data": "2026-10-01",
+        "fechamentoAjustado": 52.51
+      }
+    },
+    {
+      "ticker": "ITUB4",
+      "nome": "Itau Unibanco Holding SA Pfd",
+      "preco": 39.78,
+      "precoEm": "2026-10-28T21:30:30.000Z",
+      "pl": 9.824405423427429,
+      "retorno2a": 49.04,
+      "inicio": {
+        "data": "2024-10-29",
+        "fechamentoAjustado": 26.6903
+      },
+      "fim": {
+        "data": "2026-10-01",
+        "fechamentoAjustado": 39.78
+      }
+    },
+    {
+      "ticker": "VALE3",
+      "nome": "Vale S.A.",
+      "preco": 61.38,
+      "precoEm": "2026-10-28T21:30:30.000Z",
+      "pl": 25.341645679369144,
+      "retorno2a": 14.45,
+      "inicio": {
+        "data": "2024-10-29",
+        "fechamentoAjustado": 53.6306
+      },
+      "fim": {
+        "data": "2026-10-01",
+        "fechamentoAjustado": 61.38
+      }
+    },
+    {
+      "ticker": "MGLU3",
+      "nome": "Magazine Luiza S.A.",
+      "preco": 5.22,
+      "precoEm": "2026-10-28T21:30:30.000Z",
+      "pl": 48.2886216466235,
+      "retorno2a": -39.76,
+      "inicio": {
+        "data": "2024-10-29",
+        "fechamentoAjustado": 8.665
+      },
+      "fim": {
+        "data": "2026-10-01",
+        "fechamentoAjustado": 5.22
+      }
+    }
+  ],
+  "falhas": []
+}
