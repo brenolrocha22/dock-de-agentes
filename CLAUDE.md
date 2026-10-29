@@ -22,5 +22,6 @@ Os agentes do dock são consultores financeiros: pesquisam ações e fundos imob
 
 ## Estado atual
 
-- Protótipo web (React + Vite) concluído: dock com hover, quatro agentes e execução simulada em `src/App.tsx` e `src/task-state.ts`.
-- Próxima etapa: preparar Rust + Visual Studio Build Tools (C++) e adicionar o Tauri 2 ao projeto existente.
+- App Tauri 2 funcionando (`npm.cmd run tauri dev`): dock arrastável, monitor inicial, vertical nas laterais, liga/desliga, relatórios em `Documentos\Dock de Agentes\Relatórios\<agente>`.
+- Agentes ainda simulados. Pendente: build release + atalho na área de trabalho; depois Fase 4 (Claude Agent SDK + fonte de dados).
+- Máquina lenta (i3 de 2 núcleos, 8 GB): primeira compilação Rust leva 30+ min.
