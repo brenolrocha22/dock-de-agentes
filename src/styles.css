@@ -52,8 +52,54 @@ button:focus-visible, a:focus-visible, textarea:focus-visible {
 .agent-amber { --agent-color: #f2c37f; color: #f2c37f; }
 .agent-mint { --agent-color: #83d8b8; color: #83d8b8; }
 .dock-divider { width: 1px; height: 20px; margin: 0 1px; background: rgba(255,255,255,.1); }
-.dock-help { display: grid; width: 28px; height: 32px; flex: 0 0 28px; place-items: center; border: 0; border-radius: 9px; color: rgba(255,255,255,.32); background: transparent; cursor: help; }
-.dock-help:hover { color: rgba(255,255,255,.75); }
+.dock-settings { display: grid; width: 28px; height: 32px; flex: 0 0 28px; place-items: center; border: 0; border-radius: 9px; color: rgba(255,255,255,.32); background: transparent; cursor: pointer; }
+.dock-settings:hover, .dock-settings.is-open { color: rgba(255,255,255,.75); }
+.dock-settings.is-open { background: rgba(255,255,255,.07); }
+.dock-grip { display: grid; width: 22px; height: 32px; flex: 0 0 22px; place-items: center; border: 0; border-radius: 8px; color: rgba(255,255,255,.28); background: transparent; cursor: grab; }
+.dock-grip:hover { color: rgba(255,255,255,.7); background: rgba(255,255,255,.05); }
+.dock-grip:active { cursor: grabbing; }
+.dock-grip svg { pointer-events: none; }
+.settings-avatar { --agent-color: #c9b6ff; color: #c9b6ff; }
+.monitor-option { display: flex; width: 100%; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,.09); border-radius: 10px; padding: 10px 11px; color: rgba(255,255,255,.62); background: rgba(255,255,255,.025); font-size: 12px; cursor: pointer; transition: background .15s ease, color .15s ease, border-color .15s ease; }
+.monitor-option:hover { color: rgba(255,255,255,.92); background: rgba(255,255,255,.06); }
+.monitor-option.is-selected { color: rgba(255,255,255,.92); border-color: rgba(131,216,184,.22); background: rgba(131,216,184,.05); }
+.quit-button { display: inline-flex; align-items: center; gap: 6px; border: 1px solid rgba(255,255,255,.09); border-radius: 8px; padding: 7px 10px; color: rgba(255,255,255,.5); background: transparent; font-size: 11px; cursor: pointer; }
+.quit-button:hover { color: rgba(255,255,255,.9); background: rgba(255,255,255,.06); }
+.quit-button.is-danger:hover { color: #ffb4b4; border-color: rgba(255,140,140,.25); background: rgba(255,140,140,.06); }
+.link-button { display: inline-flex; align-items: center; gap: 5px; border: 0; border-radius: 6px; padding: 3px 6px; color: rgba(255,255,255,.45); background: transparent; font-size: 10px; cursor: pointer; }
+.link-button:hover { color: rgba(255,255,255,.9); background: rgba(255,255,255,.06); }
+.report-item { display: flex; width: 100%; min-width: 0; align-items: center; gap: 7px; border: 1px solid transparent; border-radius: 8px; padding: 6px 8px; color: rgba(255,255,255,.55); background: rgba(255,255,255,.025); font-size: 11px; text-align: left; cursor: pointer; }
+.report-item:hover { color: rgba(255,255,255,.92); background: rgba(255,255,255,.06); }
+.report-item.is-new { border-color: rgba(131,216,184,.22); color: rgba(255,255,255,.85); }
+
+/* Linha do dock: alça, logo e controles fixos; só a lista de agentes rola. */
+.dock-shell { max-width: 100%; max-height: 100%; }
+.dock-row { display: flex; max-width: 100%; min-width: 0; align-items: center; gap: 4px; }
+.dock-agents { display: flex; min-width: 0; flex: 0 1 auto; align-items: center; gap: 4px; overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.18) transparent; }
+.dock-agents::-webkit-scrollbar { width: 4px; height: 4px; }
+.dock-agents::-webkit-scrollbar-thumb { border-radius: 4px; background: rgba(255,255,255,.18); }
+.dock-agents.is-off .dock-button { opacity: .35; cursor: not-allowed; }
+.dock-agents.is-off .dock-button:hover { color: inherit; background: transparent; }
+.dock-power { display: grid; width: 28px; height: 32px; flex: 0 0 28px; place-items: center; border: 0; border-radius: 9px; color: rgba(255,255,255,.32); background: transparent; cursor: pointer; transition: color .15s ease, background .15s ease; }
+.dock-power.is-on { color: #83d8b8; }
+.dock-power:hover { background: rgba(255,255,255,.07); }
+.dock-shell.is-vertical { padding: 10px 8px; }
+.dock-shell.is-vertical .dock-row { max-height: 100%; min-height: 0; flex-direction: column; }
+.dock-shell.is-vertical .dock-agents { min-height: 0; flex-direction: column; overflow-x: hidden; overflow-y: auto; }
+.dock-shell.is-vertical .dock-divider { width: 20px; height: 1px; margin: 1px 0; }
+.dock-shell.is-vertical .dock-grip { width: 32px; height: 22px; flex-basis: 22px; }
+.dock-shell.is-vertical .dock-power, .dock-shell.is-vertical .dock-settings { width: 32px; height: 28px; flex-basis: 28px; }
+
+/* App desktop: janela transparente que envolve apenas o dock e o painel aberto.
+   O dock ocupa uma área de tamanho fixo, para que o hover nunca redimensione a janela. */
+html.is-desktop, html.is-desktop body { min-height: 0; background: transparent; }
+.desktop-root { position: fixed; inset: 0; overflow: hidden; }
+.desktop-stack { position: absolute; display: flex; width: max-content; align-items: center; gap: 12px; padding: 16px; }
+.desktop-stack.layout-horizontal { bottom: 0; left: 50%; flex-direction: column; transform: translateX(-50%); }
+.desktop-stack.layout-left { top: 50%; left: 0; flex-direction: row-reverse; transform: translateY(-50%); }
+.desktop-stack.layout-right { top: 50%; right: 0; flex-direction: row; transform: translateY(-50%); }
+.dock-slot { display: flex; width: 480px; height: 92px; flex: 0 0 auto; align-items: flex-end; justify-content: center; }
+.dock-slot.is-vertical { width: 64px; height: 420px; align-items: center; }
 .dock-caption { display: flex; align-items: center; overflow: hidden; color: rgba(255,255,255,.3); font-size: 8px; font-weight: 600; letter-spacing: .15em; white-space: nowrap; }
 .agent-panel { border: 1px solid rgba(255,255,255,.12); border-radius: 17px; padding: 18px; background: rgba(27,27,34,.96); box-shadow: 0 20px 70px rgba(0,0,0,.55), inset 0 1px rgba(255,255,255,.06); backdrop-filter: blur(26px); }
 .agent-avatar { display: grid; width: 39px; height: 39px; flex: 0 0 39px; place-items: center; border: 1px solid color-mix(in srgb, var(--agent-color) 22%, transparent); border-radius: 13px; background: color-mix(in srgb, var(--agent-color) 10%, transparent); }

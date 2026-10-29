@@ -7,6 +7,8 @@ export default defineConfig({
   server: {
     host: true,
     allowedHosts: true,
-    strictPort: false,
+    strictPort: true,
+    // O Tauri recompila em src-tauri; vigiar essa pasta trava em arquivos em uso.
+    watch: { ignored: ["**/src-tauri/**"] },
   },
 });
